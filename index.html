@@ -1,0 +1,904 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#171914">
+  <meta name="description" content="Discover Bistro 24 — delicious food, warm hospitality and memorable dining. Explore our menu and send a reservation enquiry.">
+  <title>Bistro 24 | Good Food, Good Moments</title>
+
+  <style>
+    :root {
+      --dark: #171914;
+      --dark-soft: #22251e;
+      --cream: #f8f5ed;
+      --white: #fffdf8;
+      --gold: #d7b56d;
+      --muted: #aaa99e;
+      --green: #526b43;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 85px;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select {
+      font: inherit;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .section {
+      padding: 82px 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .section-heading h2 {
+      font-family: Georgia, serif;
+      font-size: clamp(30px, 5vw, 45px);
+      line-height: 1.2;
+      margin-top: 10px;
+    }
+
+    .section-heading p {
+      color: #77766e;
+      max-width: 520px;
+      margin: 12px auto 0;
+      font-size: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 12px 22px;
+      border: 1px solid var(--gold);
+      background: var(--gold);
+      color: var(--dark);
+      border-radius: 3px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .btn:hover {
+      background: #e8cc8c;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      color: var(--white);
+      background: transparent;
+      border-color: rgba(255,255,255,0.6);
+    }
+
+    .btn-outline:hover {
+      color: var(--dark);
+    }
+
+    /* Navigation */
+
+    .navbar {
+      background: var(--dark);
+      color: var(--white);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255,255,255,0.09);
+    }
+
+    .nav-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-family: Georgia, serif;
+      font-size: 25px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      list-style: none;
+      font-size: 13px;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .menu-toggle {
+      display: none;
+      color: white;
+      background: transparent;
+      border: 1px solid #55564e;
+      border-radius: 3px;
+      padding: 7px 11px;
+      cursor: pointer;
+    }
+
+    /* Hero */
+
+    .hero {
+      min-height: 580px;
+      display: flex;
+      align-items: center;
+      color: white;
+      background:
+        linear-gradient(90deg, rgba(15,17,13,.94), rgba(15,17,13,.67) 52%, rgba(15,17,13,.25)),
+        url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1800&q=85")
+        center/cover;
+    }
+
+    .hero-content {
+      padding: 90px 0;
+      max-width: 680px;
+    }
+
+    .hero h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(44px, 8vw, 76px);
+      font-weight: 500;
+      line-height: 1.07;
+      margin: 20px 0;
+    }
+
+    .hero h1 span {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .hero p {
+      color: #e0ded5;
+      max-width: 480px;
+      font-size: 15px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .demo-note {
+      margin-top: 27px;
+      font-size: 11px;
+      color: #d1cec2;
+      letter-spacing: 1px;
+    }
+
+    /* Highlights */
+
+    .highlights {
+      background: var(--white);
+      border-bottom: 1px solid #e9e4d8;
+    }
+
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 25px 0;
+      text-align: center;
+    }
+
+    .highlight-item {
+      padding: 12px;
+    }
+
+    .highlight-item strong {
+      display: block;
+      font-family: Georgia, serif;
+      font-size: 19px;
+      margin-bottom: 3px;
+    }
+
+    .highlight-item span {
+      color: #77766e;
+      font-size: 12px;
+    }
+
+    /* Menu */
+
+    .menu-section {
+      background: var(--cream);
+    }
+
+    .filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-bottom: 30px;
+    }
+
+    .filter-btn {
+      padding: 9px 17px;
+      border: 1px solid #d9d4c8;
+      background: transparent;
+      border-radius: 30px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--dark);
+      color: white;
+      border-color: var(--dark);
+    }
+
+    .food-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 23px;
+    }
+
+    .food-card {
+      background: var(--white);
+      border: 1px solid #ece7dc;
+      overflow: hidden;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .food-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(30,30,20,.08);
+    }
+
+    .food-card img {
+      height: 205px;
+      background: #e5dfd1;
+    }
+
+    .food-info {
+      padding: 18px;
+    }
+
+    .food-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .food-info h3 {
+      font-family: Georgia, serif;
+      font-size: 19px;
+      line-height: 1.3;
+    }
+
+    .price {
+      color: var(--green);
+      font-weight: 700;
+      white-space: nowrap;
+      font-size: 14px;
+    }
+
+    .food-info p {
+      color: #77766e;
+      font-size: 12px;
+      margin-top: 9px;
+    }
+
+    .food-card[hidden] {
+      display: none;
+    }
+
+    /* About */
+
+    .about {
+      background: var(--dark);
+      color: var(--white);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 55px;
+    }
+
+    .about-image {
+      height: 390px;
+      object-fit: cover;
+    }
+
+    .about-copy h2 {
+      font-family: Georgia, serif;
+      font-size: clamp(32px, 5vw, 46px);
+      line-height: 1.15;
+      margin: 14px 0 20px;
+    }
+
+    .about-copy p {
+      color: #c4c3b9;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .about-copy .btn {
+      margin-top: 10px;
+    }
+
+    /* Visit */
+
+    .visit {
+      background: var(--white);
+    }
+
+    .visit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .visit-card {
+      padding: 25px;
+      background: var(--cream);
+      border: 1px solid #eae5d9;
+    }
+
+    .visit-card .symbol {
+      font-size: 23px;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+
+    .visit-card h3 {
+      font-family: Georgia, serif;
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .visit-card p {
+      font-size: 13px;
+      color: #77766e;
+      overflow-wrap: anywhere;
+    }
+
+    /* Booking form */
+
+    .booking {
+      background: #eae5d8;
+    }
+
+    .booking-wrap {
+      max-width: 700px;
+      margin: auto;
+      padding: 35px;
+      background: var(--white);
+      border: 1px solid #e2dccf;
+    }
+
+    .booking-wrap h2 {
+      font-family: Georgia, serif;
+      font-size: clamp(29px, 5vw, 39px);
+      text-align: center;
+      margin: 8px 0;
+    }
+
+    .booking-wrap > p {
+      text-align: center;
+      color: #77766e;
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    .booking-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 17px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      min-height: 47px;
+      padding: 11px;
+      border: 1px solid #d9d4c8;
+      border-radius: 3px;
+      background: white;
+      color: var(--dark);
+    }
+
+    .booking-form .btn {
+      width: 100%;
+      margin-top: 4px;
+    }
+
+    .form-message {
+      grid-column: 1 / -1;
+      font-size: 12px;
+      color: var(--green);
+      text-align: center;
+      min-height: 18px;
+    }
+
+    /* Footer */
+
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 38px 0 20px;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 25px;
+      padding-bottom: 28px;
+    }
+
+    .footer-top p {
+      max-width: 330px;
+      color: #aaa99e;
+      font-size: 12px;
+      margin-top: 9px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 17px;
+      font-size: 12px;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    .copyright {
+      border-top: 1px solid #393b33;
+      padding-top: 17px;
+      color: #aaa99e;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    /* Responsive layout */
+
+    @media (max-width: 760px) {
+      .nav-inner {
+        min-height: 68px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        width: 100%;
+        padding: 20px 5%;
+        background: var(--dark);
+        border-top: 1px solid #393b33;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 12px 0;
+      }
+
+      .nav-links .btn {
+        margin-top: 10px;
+      }
+
+      .hero {
+        min-height: 550px;
+        background-position: 58% center;
+      }
+
+      .hero-content {
+        padding: 75px 0;
+      }
+
+      .section {
+        padding: 65px 0;
+      }
+
+      .food-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 13px;
+      }
+
+      .food-card img {
+        height: 155px;
+      }
+
+      .food-info {
+        padding: 13px;
+      }
+
+      .food-info h3 {
+        font-size: 16px;
+      }
+
+      .food-info p {
+        font-size: 11px;
+      }
+
+      .food-top {
+        flex-wrap: wrap;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .about-image {
+        height: 270px;
+      }
+
+      .visit-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .booking-wrap {
+        padding: 25px 18px;
+      }
+
+      .footer-top {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .food-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .food-card img {
+        height: 210px;
+      }
+
+      .highlight-grid {
+        gap: 4px;
+      }
+
+      .highlight-item strong {
+        font-size: 15px;
+      }
+
+      .highlight-item span {
+        font-size: 10px;
+      }
+
+      .booking-form {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#home" class="logo">BISTRO <span>24.</span></a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-expanded="false"
+        aria-controls="navLinks"
+        aria-label="Toggle navigation">
+        ☰ Menu
+      </button>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#menu">Our Menu</a></li>
+          <li><a href="#about">Our Story</a></li>
+          <li><a href="#visit">Visit Us</a></li>
+          <li><a href="#booking" class="btn">Enquire Now ↗</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-content">
+          <span class="eyebrow">GOOD FOOD. GOOD MOMENTS.</span>
+
+          <h1>
+            A little taste<br>
+            of <span>happiness.</span>
+          </h1>
+
+          <p>
+            Thoughtfully prepared dishes, welcoming vibes and
+            memorable moments. Your table for something special
+            is waiting.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#menu" class="btn">Explore Our Menu ↓</a>
+            <a href="#booking" class="btn btn-outline">Book a Table ↗</a>
+          </div>
+
+          <p class="demo-note">
+            A SAMPLE RESTAURANT WEBSITE BY ZORD STUDIO
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HIGHLIGHTS -->
+    <section class="highlights">
+      <div class="container highlight-grid">
+        <div class="highlight-item">
+          <strong>Fresh Ingredients</strong>
+          <span>Simple food, thoughtfully made</span>
+        </div>
+
+        <div class="highlight-item">
+          <strong>Made With Care</strong>
+          <span>Every plate deserves attention</span>
+        </div>
+
+        <div class="highlight-item">
+          <strong>Good Company</strong>
+          <span>Moments worth sharing</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENU -->
+    <section class="section menu-section" id="menu">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">FROM OUR KITCHEN</span>
+          <h2>Made to be savoured.</h2>
+          <p>
+            Explore a few favourites from our sample menu.
+            Tap a category to find your next craving.
+          </p>
+        </div>
+
+        <div class="filters" aria-label="Filter menu items">
+          <button class="filter-btn active" data-filter="all" aria-pressed="true">All Items</button>
+          <button class="filter-btn" data-filter="starters" aria-pressed="false">Starters</button>
+          <button class="filter-btn" data-filter="mains" aria-pressed="false">Mains</button>
+          <button class="filter-btn" data-filter="desserts" aria-pressed="false">Desserts</button>
+        </div>
+
+        <div class="food-grid" id="foodGrid">
+
+          <article class="food-card" data-category="starters">
+            <img
+              src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=700&q=80"
+              alt="Fresh colourful salad bowl"
+              loading="lazy">
+            <div class="food-info">
+              <div class="food-top">
+                <h3>Garden Fresh Bowl</h3>
+                <span class="price">₹199</span>
+              </div>
+              <p>Fresh greens, seasonal vegetables and a light dressing.</p>
+            </div>
+          </article>
+
+          <article class="food-card" data-category="mains">
+            <img
+              src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=700&q=80"
+              alt="Freshly baked pizza with toppings"
+              loading="lazy">
+            <div class="food-info">
+              <div class="food-top">
+                <h3>Classic Farm Pizza</h3>
+                <span class="price">₹349</span>
+              </div>
+              <p>A golden crust topped with cheese and garden favourites.</p>
+            </div>
+          </article>
+
+          <article class="food-card" data-category="mains">
+            <img
+              src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=700&q=80"
+              alt="Grilled food served fresh"
+              loading="lazy">
+            <div class="food-info">
+              <div class="food-top">
+                <h3>Smoky Grill Platter</h3>
+                <span class="price">₹399</span>
+              </div>
+              <p>Grilled favourites with herbs and house-style seasoning.</p>
+            </div>
+          </article>
+
+          <article class="food-card" data-category="starters">
+            <img
+              src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=700&q=80"
+              alt="Crispy golden potato fries"
+              loading="lazy">
+            <div class="food-info">
+              <div class="food-top">
+                <h3>Golden Crispy Fries</h3>
+                <span class="price">₹149</span>
+              </div>
+              <p>Crispy on the outside, soft inside and perfect for sharing.</p>
+            </div>
+          </article>
+
+          <article class="food-card" data-category="mains">
+            <img
+              src="https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=700&q=80"
+              alt="Restaurant main course beautifully plated"
+              loading="lazy">
+            <div class="food-info">
+              <div class="food-top">
+                <h3>Chef's Special Plate</h3>
+                <span class="price">₹329</span>
+              </div>
+              <p>A satisfying main course for a relaxed meal.</p>
+            </div>
+          </article>
+
+          <article class="food-card" data-category="desserts">
+            <img
+              src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=700&q=80"
+              alt="Delicious fruit-topped dessert"
+              loading="lazy">
+            <div class="food-info">
+              <div class="food-top">
+                <h3>Sweet Finish</h3>
+                <span class="price">₹179</span>
+              </div>
+              <p>A sweet treat to make the last bite memorable.</p>
+            </div>
+          </article>
+
+        </div>
+
+        <p style="text-align:center;color:#77766e;font-size:11px;margin-top:25px;">
+          Sample menu and prices for demonstration only.
+        </p>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section about" id="about">
+      <div class="container about-grid">
+        <img
+          class="about-image"
+          src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1000&q=85"
+          alt="Elegant restaurant dining setup"
+          loading="lazy">
+
+        <div class="about-copy">
+          <span class="eyebrow">MORE THAN A MEAL</span>
+
+          <h2>Good food brings people together.</h2>
+
+          <p>
+            At Bistro 24, every meal is an opportunity to slow down,
+            share a story and enjoy the company around you.
+          </p>
+
+          <p>
+            From casual catch-ups to special celebrations, our sample
+            concept is built around comfortable dining and thoughtful food.
+          </p>
+
+          <a href="#booking" class="btn">Plan Your Visit ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISIT -->
+    <section class="section visit" id="visit">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">COME SAY HELLO</span>
+          <h2>Your next favourite spot.</h2>
+          <p>
+            Replace these sample details with the real restaurant's
+            address, opening hours and contact inform
